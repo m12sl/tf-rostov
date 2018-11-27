@@ -31,6 +31,25 @@ style: |
 
 </div>
 
+## Ликбез по Глубокому Обучению
+{:.section}
+
+## Основы Tensorflow
+{:.section}
+
+## Типичные ошибки в Tensorflow
+{:.section}
+
+## Dataset API
+{:.section}
+
+## Estimator API
+{:.section}
+
+
+
+
+
 ## Название раздела
 {:.section}
 
@@ -314,13 +333,12 @@ for (var i = 0; i < x; i++) {
 -------
 
 <!-- left -->
-- {:.skype}author
-- {:.mail}author@yandex-team.ru
-- {:.github}author
+- {:.mail}m12sl@yandex-team.ru
+- {:.github}m12sl
 
 <!-- right -->
-- {:.twitter}@author
-- {:.facebook}author
+- {:.telegram}m12sl
+- {:.vk}@m12sl
 
 <!-- 
 
@@ -329,11 +347,10 @@ for (var i = 0; i < x; i++) {
 - {:.github}author
 - {:.bitbucket}author
 - {:.twitter}@author
-- {:.telegram}author
+
 - {:.skype}author
 - {:.instagram}author
 - {:.facebook}author
-- {:.vk}@author
 - {:.ok}@author
 
 -->
