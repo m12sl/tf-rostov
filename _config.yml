@@ -7,18 +7,18 @@ relative_permalinks: false
 default_theme: yandex2
 default_width: 1024
 default_ratio: 16x9     # 4x3, 16x9, 16x10
-default_lang: en
+default_lang: ru
 default_body_class: list
 
 presentation:
-    title: Название презентации
-    service: Название сервиса
+    title: Tensorflow: Estimator и Dataset API
+    service: Компьютерное зрение
     nda: false
     lang: ru            # ru, en
 
 author:
-    name: Автор
-    position: Должность
+    name: Алексей Озерин
+    position: Старший разработчик
     company:
         name: Яндекс
         url:  http://yandex.ru/
