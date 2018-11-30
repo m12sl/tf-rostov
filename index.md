@@ -47,22 +47,32 @@ style: |
 {:.section}
 
 ## Tensorflow -- это просто
-{:.images .two}
-
+{:.image-left}
 ![](pictures/graph.png)
-*собрать граф
+
+1. Собрать граф
 ```python
 x = tf.placeholder(tf.float32)
 y = tf.placeholder(tf.float32)
+z = (x * y) + (x + y)
 ```
-*
 
-![](pictures/graph.png)
-*использовать его*
-
+## Tensorflow -- это просто
+{:.image-left}
+![](pictures/graph_executed.png)
 
 1. Собрать граф
+```python
+x = tf.placeholder(tf.float32)
+y = tf.placeholder(tf.float32)
+z = (x * y) + (x + y)
+```
+
 2. Использовать его
+```python
+with tf.Session() as sess:
+    sess.run(z, feed_dict={x: 1, y: -2})  # -3
+```
 
 
 ## Типичные ошибки в Tensorflow
