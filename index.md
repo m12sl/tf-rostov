@@ -40,22 +40,27 @@ style: |
 ## Типичные ошибки в Tensorflow
 {:.section}
 
-## Keras to Tensorflow
+## Особенности Tensorflow
+### Keras to Tensorflow
 
 Пример кода на Керасе
 
+## Особенности Tensorflow
 ### Tensorflow model
 
 Код
 
+## Особенности Tensorflow
 ### Tensorflow train_op
 
 Код
 
+## Особенности Tensorflow
 ### Tensorflow train loop
 
 Код
 
+## Особенности Tensorflow
 ### Tensorflow что пошло не так?
 
 Картинки и отгадки.
@@ -63,6 +68,7 @@ style: |
 ## Dataset API
 {:.section}
 
+## Dataset API
 ### Dataset API
 
 Работа с данными
@@ -73,6 +79,7 @@ style: |
 4. Аугментация
 5. Асинхронная подгрузка
 
+## Dataset API
 ### Dataset API
 
 Here will be code.
@@ -81,6 +88,7 @@ Here will be code.
 ## Estimator API
 {:.section}
 
+## Estimator API
 ### Estimator API
 
 Основные пожелания
@@ -90,20 +98,23 @@ Here will be code.
 - корректное сохранение логов для tensorboard
 - модульность кода
 
+## Estimator API
 ### Estimator API. Пример
 
 Here will be code
 
+## Estimator API
 ### Estimator API. Что внутри
 
 Here will be code
 
+## Estimator API
 ### Estimator API. Интересные вещи
 
 - как менять LR
 - прочие интересности
 
-### Выводы
+## Выводы
 
 - читайте исходники
 - dataset API
