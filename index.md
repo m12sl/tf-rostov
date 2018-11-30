@@ -50,7 +50,12 @@ style: |
 {:.images .two}
 
 ![](pictures/graph.png)
-*собрать граф*
+*собрать граф
+```python
+x = tf.placeholder(tf.float32)
+y = tf.placeholder(tf.float32)
+```
+*
 
 ![](pictures/graph.png)
 *использовать его*
