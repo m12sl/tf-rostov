@@ -47,6 +47,14 @@ style: |
 {:.section}
 
 ## Tensorflow -- это просто
+{:.images .two}
+
+![](pictures/graph.png)
+*собрать граф*
+
+![](pictures/graph.png)
+*использовать его*
+
 
 1. Собрать граф
 2. Использовать его
