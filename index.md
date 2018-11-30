@@ -52,8 +52,8 @@ style: |
 {:.image-left}
 
 1. Собрать граф
-```python
 
+```python
 x = tf.placeholder(tf.float32)
 y = tf.placeholder(tf.float32)
 z = (x * y) + (x + y)
@@ -65,16 +65,16 @@ z = (x * y) + (x + y)
 {:.image-left}
 
 1. Собрать граф
-```python
 
+```python
 x = tf.placeholder(tf.float32)
 y = tf.placeholder(tf.float32)
 z = (x * y) + (x + y)
 ```
 
 2. Использовать его
-```python
 
+```python
 with tf.Session() as sess:
     sess.run(z, feed_dict={x: 1, y: -2})
     # -3
