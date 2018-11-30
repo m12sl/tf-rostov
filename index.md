@@ -83,7 +83,7 @@ with tf.Session() as sess:
 ## Tensorflow -- это просто
 ### Чуть сложнее
 
-![](pictures/counter_how.png)
+![](pictures/counter-how.png)
 {:.image-left}
 
 Как сделать счетчик?
@@ -102,10 +102,10 @@ counter = tf.Variable(0)
 
 ```python
 counter = tf.Variable(0)
-inc_counter = tf.add(counter, tf.constant(1))
+incremented = counter + 1
 
 # state <- new_value
-update_op = tf.assign(counter, inc_counter)
+update_op = tf.assign(counter, incremented)
 ```
 
 
