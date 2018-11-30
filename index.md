@@ -80,6 +80,34 @@ with tf.Session() as sess:
     # -3
 ```
 
+## Tensorflow -- это просто
+### Чуть сложнее
+
+![](pictures/counter_how.png)
+{:.image-left}
+
+Как сделать счетчик?
+
+```python
+counter = tf.Variable(0)
+```
+
+## Tensorflow -- это просто
+### Чуть сложнее
+
+![](pictures/counter.png)
+{:.image-left}
+
+Как сделать счетчик?
+
+```python
+counter = tf.Variable(0)
+inc_counter = tf.add(counter, tf.constant(1))
+
+# state <- new_value
+update_op = tf.assign(counter, inc_counter)
+```
+
 
 ## Типичные ошибки в Tensorflow
 {:.section}
