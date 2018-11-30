@@ -47,8 +47,9 @@ style: |
 {:.section}
 
 ## Tensorflow -- это просто
-{:.image-left}
+
 ![](pictures/graph.png)
+{:.image-left}
 
 1. Собрать граф
 ```python
@@ -58,8 +59,9 @@ z = (x * y) + (x + y)
 ```
 
 ## Tensorflow -- это просто
-{:.image-left}
+
 ![](pictures/graph_executed.png)
+{:.image-left}
 
 1. Собрать граф
 ```python
