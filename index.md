@@ -36,7 +36,7 @@ style: |
 {:.fullscrean}
 ![](pictures/logos.png)
 
-## Tensorflow vs all
+## Tensorflow vs two
 
 ![](pictures/three-horses.png)
 {:.image-left}
@@ -138,7 +138,7 @@ loss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)
 def very_model(x):
     # body:
     x = layers.conv2d(x, 32, 3, 2)
-    ...
+    <...>
     x = layers.conv2d(x, 2048, 1, 1)
     gap = tf.reduce_mean(x, [1, 2])
     # head:
@@ -152,7 +152,7 @@ def very_model(x):
 def very_model(x):
     # body:
     x = layers.conv2d(x, 32, 3, 2, normalizer_fn=layers.batch_norm)
-    ...
+    <...>
     x = layers.conv2d(x, 2048, 1, 1, normalizer_fn=layers.batch_norm)
     gap = tf.reduce_mean(x, [1, 2])
     # head:
@@ -313,7 +313,7 @@ model.evaluate(val_generator)
 train_specs = dict(
     mode=mode,
     loss=loss,
-    train_op=...,
+    train_op=<...>,
 )
 ```
 
@@ -321,7 +321,7 @@ train_specs = dict(
 eval_specs = dict(
     mode=mode,
     loss=loss,
-    eval_metric_ops={...}
+    eval_metric_ops={<...>}
 )
 ```
 
