@@ -310,21 +310,16 @@ model.evaluate(val_generator)
 
 Нужно всего лишь заполнить словарь `tf.estimator.EstimatorSpec`
 
-**TRAIN**
-
 ```
-specs = dict(
+train_specs = dict(
     mode=mode,
     loss=loss,
     train_op=...,
 )
 ```
 
-
-**EVAL**
-
 ```
-specs = dict(
+eval_specs = dict(
     mode=mode,
     loss=loss,
     eval_metric_ops={...}
