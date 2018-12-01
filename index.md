@@ -37,8 +37,9 @@ style: |
 ![](pictures/logos.png)
 
 ## Tensorflow vs all
-{:image-left}
+
 ![](pictures/three-horses.png)
+{:image-left}
 
 1. Развитый проект
 2. Дополняющие проекты
