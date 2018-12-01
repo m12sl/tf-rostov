@@ -37,10 +37,13 @@ style: |
 ![](pictures/logos.png)
 
 ## Tensorflow vs all
-{:images}
-![](pictures/why-tf.png)
+{:image-left}
+![](pictures/three-horses.png)
 
-Хороший реп, хороший код, богатая инфраструктура.
+1. Развитый проект
+2. Дополняющие проекты
+3. Хорошая документация
+4. Отличный код
 
 ## Вычислительные графы
 {:.section}
@@ -166,8 +169,8 @@ with tf.Session() as sess:
 ## Dataset API
 {:.section}
 
-## Dataset API
-### Работа с данными
+## Работа с данными
+### Dataset API
 
 1. Список семплов (картинок, файлов, строчек, ....)
 2. Загрузка
@@ -175,7 +178,7 @@ with tf.Session() as sess:
 4. Аугментация
 5. Асинхронная подгрузка
 
-## Dataset API
+## Работа с данными
 ### Dataset API
 
 ```python
@@ -190,37 +193,37 @@ batch
 ## Estimator API
 {:.section}
 
-## Estimator API
+## Wishlist
 ### Estimator API
 
-Основные пожелания
-- несколько версий графа (train, eval, inference)
-- сохранение и продолжение тренировки
-- переключение режимов train/eval
-- корректное сохранение логов для tensorboard
-- модульность кода
+1. Несколько версий графа (train, eval, inference)
+2. Сохранение и продолжение тренировки
+3. Корректное сохранение логов для tensorboard
+4. Модульность кода и простые интерфейсы
+5. Простой экспорт модели
 
 ## Estimator API
 ### Estimator API. Пример
 
-Here will be code
+```python
+model = tf.estimator.Estimator(
+    model_fn=model_fn,
+    model_dir=model_dir,
+    config=run_config,
+    params=params)
 
-## Estimator API
-### Estimator API. Что внутри
+model.train(train_generator)
+model.evaluate(val_generator)
+```
 
-Here will be code
 
-## Estimator API
-### Estimator API. Интересные вещи
+## Как обрести уверенность в результатах
 
-- как менять LR
-- прочие интересности
-
-## Выводы
-
-- читайте исходники
-- dataset API
-- estimator API
+1. Разобраться в матчасти
+2. Читать документацию
+3. Читать исходники tensorflow и tensorflow/models
+4. Использовать Dataset API
+5. Переходить на Estimator API/MonitoredTrainingSession
 
 
 ## Название раздела
