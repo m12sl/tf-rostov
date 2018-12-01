@@ -308,29 +308,27 @@ model.evaluate(val_generator)
 ## model_fn
 ### Estimator API
 
-{:.fullscreen}
+Нужно всего лишь заполнить словарь `tf.estimator.EstimatorSpec`
 
-```python
-def model_fn(features, labels, mode, params):
-    logits = model(features, params, mode == tf.estimator.ModeKeys.TRAIN)
-    loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
-            logits=logits,
-            labels=labels)
-    
-    if mode == tf.estimator.ModeKeys.TRAIN:
-        specs = dict(
-            mode=mode,
-            loss=loss,
-            train_op=...,
-        )
-    if mode == tf.estimator.ModeKeys.EVAL:
-        specs = dict(
-            mode=mode,
-            loss=loss,
-            eval_metric_ops={...}
-        )
-        
-    return tf.estimator.EstimatorSpec(**specs)
+**TRAIN**
+
+```
+specs = dict(
+    mode=mode,
+    loss=loss,
+    train_op=...,
+)
+```
+
+
+**EVAL**
+
+```
+specs = dict(
+    mode=mode,
+    loss=loss,
+    eval_metric_ops={...}
+)
 ```
 
 
