@@ -306,7 +306,6 @@ model.evaluate(val_generator)
 
 
 ## model_fn
-### Estimator API
 
 Нужно всего лишь заполнить словарь `tf.estimator.EstimatorSpec`
 
