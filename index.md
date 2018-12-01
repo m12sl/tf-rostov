@@ -46,9 +46,6 @@ style: |
 3. Хорошая документация
 4. Отличный код
 
-## Вычислительные графы
-{:.section}
-
 ## Основы Tensorflow
 {:.section}
 
@@ -77,6 +74,7 @@ style: |
     y = tf.placeholder(tf.float32)
     z = (x * y) + (x + y)
     ```
+    
 2. Использовать его
 
     ```python
