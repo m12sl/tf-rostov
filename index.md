@@ -67,6 +67,7 @@ style: |
 ![](pictures/graph_executed.png)
 {:.image-left}
 
+
 1. Собрать граф
 
     ```python
@@ -74,7 +75,8 @@ style: |
     y = tf.placeholder(tf.float32)
     z = (x * y) + (x + y)
     ```
-    
+
+
 2. Использовать его
 
     ```python
