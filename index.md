@@ -33,13 +33,13 @@ style: |
 
 ## Tensorflow и другие
 
-{:fullscrean}
+{:.fullscrean}
 ![](pictures/logos.png)
 
 ## Tensorflow vs all
 
 ![](pictures/three-horses.png)
-{:image-left}
+{:.image-left}
 
 1. Развитый проект
 2. Дополняющие проекты
