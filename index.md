@@ -77,7 +77,6 @@ z = (x * y) + (x + y)
 ```
 
 
-
 **Использовать его**
 
 ```python
@@ -86,8 +85,8 @@ with tf.Session() as sess:
     # -3
 ```
 
-## Tensorflow -- это просто
-### Чуть сложнее
+## Чуть сложнее
+### Tensorflow -- это просто
 
 ![](pictures/counter-how.png)
 {:.icon-left}
@@ -98,8 +97,8 @@ with tf.Session() as sess:
 counter = tf.Variable(0)
 ```
 
-## Tensorflow -- это просто
-### Чуть сложнее
+## Чуть сложнее
+### Tensorflow -- это просто
 
 ![](pictures/counter.png)
 {:.image-left}
@@ -131,10 +130,9 @@ model.fit(x_train, y_train, epochs=5, batch_size=32)
 loss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)
 ```
 
+## Model
+### to Tensorflow
 
-
-## to Tensorflow
-### Tensorflow model
 
 ```python
 def very_model(x):
@@ -147,8 +145,8 @@ def very_model(x):
     return layers.fully_connected(gap, 1000, activation_fn=None) 
 ```
 
-## to Tensorflow
-### Tensorflow model (+bn + dropout)
+## Model (+bn + dropout)
+### to Tensorflow
 
 ```python
 def very_model(x):
@@ -163,8 +161,9 @@ def very_model(x):
 ```
 
 
-## to Tensorflow
-### Tensorflow train_op
+## Train op
+### to Tensorflow
+
 
 ```python
 loss = tf.reduce_mean(
@@ -177,8 +176,8 @@ optimizer = tf.train.GradientDescentOptimizer(lr)
 train_op = optimizer.minimize(loss)
 ```
 
-## to Tensorflow
-### Tensorflow train loop
+## Train loop
+### to Tensorflow
 
 ```python
 with tf.Session() as sess:
@@ -192,8 +191,8 @@ with tf.Session() as sess:
         metric = sess.run(metrics_op, feed_dict={images: x, labels: y})
 ```
 
-## to Tensorflow
-### Подводные камни
+## Подводные камни
+### to Tensorflow
 
 1. Model state
 2. Train loop
@@ -226,17 +225,58 @@ train_op = optimizer.minimize(loss)
 4. Аугментация
 5. Асинхронная подгрузка
 
-## Работа с данными
+## Итерирование по семплам
+### Dataset API
+
+**from_generator**
+
+```python
+def gen():
+    for path, label in df:
+        yield {'path': path, 'label': label}
+
+
+ds = tf.data.Dataset.from_generator(gen, {'path': tf.string, 'label': tf.int64})
+value = ds.make_one_shot_iterator().get_next()
+
+with tf.Session() as sess:
+    while True:
+        print(sess.run(value))
+```
+
+## Преобразование данных
+### Dataset API
+
+**map**
+
+```
+def read_image(sample):
+    path = sample['path']
+    bin = tf.read_file(path)
+    image = tf.image.decode_jpeg(bin)
+    return {'image': image, "label": sample['label']}
+
+
+ds = ds.map(read_image, num_parallel_calls=8)
+```
+
+## Пакетные операции
 ### Dataset API
 
 ```python
-from_generator
-map()
-shuffle
-repeat
-batch
+ds.shuffle(buffer)
+ds.repeat()
+ds.batch(batch_size)
+ds.prefetch(buffer)
 ```
 
+## Итераторы
+### Dataset API
+
+1. One-shot
+2. Initializable
+3. Reinitializable
+4. Feedable
 
 ## Estimator API
 {:.section}
@@ -265,6 +305,33 @@ model.evaluate(val_generator)
 ```
 
 
+## model_fn
+### Estimator API
+
+```python
+def model_fn(features, labels, mode, params):
+    logits = model(features, params, mode == tf.estimator.ModeKeys.TRAIN)
+    loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
+            logits=logits,
+            labels=labels)
+    
+    if mode == tf.estimator.ModeKeys.TRAIN:
+        specs = dict(
+            mode=mode,
+            loss=loss,
+            train_op=...,
+        )
+    if mode == tf.estimator.ModeKeys.EVAL:
+        specs = dict(
+            mode=mode,
+            loss=loss,
+            eval_metric_ops={...}
+        )
+        
+    return tf.estimator.EstimatorSpec(**specs)
+```
+
+
 ## Как обрести уверенность в результатах
 
 1. Разобраться в матчасти
@@ -274,253 +341,6 @@ model.evaluate(val_generator)
 5. Переходить на Estimator API/MonitoredTrainingSession
 
 
-## Название раздела
-{:.section}
-
-### Верхний колонтитул
-
-## Длинная цитата переносится на несколько строк
-{:.blockquote}
-
-### Источник
-
-## Заголовок
-
-Основной текст
-
-**Ключевая мысль**
-
-- Маркированный список
-- Маркированный список
-
-1. Нумерованный список
-2. Нумерованный список
-
-### Источник
-
-## Заголовок
-
-Элементы появляются по очереди
-
-1. {:.next}Нумерованный список
-2. {:.next}Нумерованный список
-3. {:.next}Нумерованный список
-4. {:.next}Нумерованный список
-
-
-### Источник
-
-## Заголовок
-{:.images}
-
-![](themes/yandex2/images/images-one.svg)
-
-### Источник
-
-## Заголовок
-{:.images .two}
-
-![](themes/yandex2/images/images-two.svg)
-*Текст*
-
-![](themes/yandex2/images/images-two.svg)
-*Текст*
-
-### Источник
-
-## Заголовок
-{:.images .three}
-
-![](themes/yandex2/images/images-three.svg)
-*Текст*
-
-![](themes/yandex2/images/images-three.svg)
-*Текст*
-
-![](themes/yandex2/images/images-three.svg)
-*Текст*
-
-### Источник
-
-## Заголовок
-
-![](themes/yandex2/images/image-right.svg)
-{:.image-right}
-
-Основной текст
-
-**Ключевая мысль**
-
-- Маркированный список
-- Маркированный список
-
-1. Нумерованный список
-2. Нумерованный список
-
-### Источник
-
-## Заголовок
-
-<!-- библиотека пиктограмм https://patterns.yandex-team.ru/presentations?typeIn=icons -->
-
-![](themes/yandex2/images/icons.svg)
-{:.icon-left}
-
-Основной текст
-
-**Ключевая мысль**
-
-- Маркированный список
-- Маркированный список
-
-1. Нумерованный список
-2. Нумерованный список
-
-### Источник
-
-## Заголовок
-{:.icons}
-
-<!-- библиотека пиктограмм https://patterns.yandex-team.ru/presentations?typeIn=icons -->
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-### Источник
-
-## Заголовок
-{:.icons .four}
-
-<!-- библиотека пиктограмм https://patterns.yandex-team.ru/presentations?typeIn=icons -->
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-### Источник
-
-## Заголовок
-{:.icons .five}
-
-<!-- библиотека пиктограмм https://patterns.yandex-team.ru/presentations?typeIn=icons -->
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-![](themes/yandex2/images/icons.svg)
-*Текст*
-
-### Источник
-
-## Заголовок будет скрыт
-{:.fullscreen}
-
-![](themes/yandex2/images/images-fullscreen.svg)
-
-## Заголовок будет скрыт
-{:.fullscreen}
-
-![](themes/yandex2/images/images-fullscreen.svg)
-
-<figure markdown="1">
-Текст
-</figure>
-
-## Таблица
-
-|  Locavore     |  Umami       |  Helvetica |  Vegan     |
-+---------------|--------------|------------|------------+
-|  Fingerstache<br/>The second line |  Kale        |  Chips     |  Keytar    |
-|  Sriracha     |  Gluten-free |  Ennui     |  Keffiyeh  |
-|  Thundercats  |  Jean        |  Shorts    |  Biodiesel |
-|* Terry        |* Richardson  |* Swag      |* Blog      |
-
-Текст
-
-### Источник
-
-## Исходный код (html)
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Shower</title> <!--Comment-->
-    <link rel="stylesheet" href="screen.css">
-</head>
-<body>Hello!</body>
-</html>
-```
-
-## Исходный код (js)
-
-Пояснение для кода.
-
-```js
-var i, j, over, data = new Array(2, 34.12, 4.7, 0, 234, 5);
-var test = false;
-
-for (i = 1; i < data.length; i++) {
-    over = data[i]; 
-    for (j = i - 1; j >= 0 && data[j] > over; j--) {
-        data[j + 1] = data[j];
-    }
-    data[j + 1] = over;
-}
-alert(data.join(','));
-```
-
-## Исходный код (css)
-
-```css
-.head {
-    background-color: yellow;
-}
-
-.head__logo {
-    background-image: url(images/logo.svg);
-}
-
-#test, body {
-    font-weight: bold;
-}
-
-```
-
-## Этот заголовок будет скрыт
-{:.fullscreen}
-
-```js
-// исходный код (на весь экран)
-
-var x = 10;
-for (var i = 0; i < x; i++) {
-    console.log('hello!');
-}
-```
 
 ## Контакты 
 {:.contacts}
