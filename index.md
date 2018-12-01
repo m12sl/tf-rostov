@@ -195,17 +195,17 @@ with tf.Session() as sess:
 ## to Tensorflow
 ### Подводные камни
 
-1. Train loop
-2. Train op. 
-    
-    **Note: when training, the moving_mean and moving_variance need to be updated.**
+1. Model state
+2. Train loop
+3. Train op
 
-    ```python
-    update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
-        with tf.control_dependencies(update_ops):
-    train_op = optimizer.minimize(loss)
-    ```
-3. Model state
+**Note: when training, the moving_mean and moving_variance need to be updated.**
+
+```python
+update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+    with tf.control_dependencies(update_ops):
+train_op = optimizer.minimize(loss)
+```
 
 ## to Tensorflow
 ### Хорошие практики
