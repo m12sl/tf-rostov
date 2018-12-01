@@ -308,6 +308,8 @@ model.evaluate(val_generator)
 ## model_fn
 ### Estimator API
 
+{:.fullscreen}
+
 ```python
 def model_fn(features, labels, mode, params):
     logits = model(features, params, mode == tf.estimator.ModeKeys.TRAIN)
