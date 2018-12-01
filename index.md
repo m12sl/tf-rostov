@@ -204,8 +204,8 @@ update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
         train_op = optimizer.minimize(loss)
 ```
 
-## to Tensorflow
-### Хорошие практики
+## Хорошие практики
+### to Tensorflow
 
 0. Читать документацию и экспериментировать
 1. Использовать `tf.train.MonitoredTrainingSession` вместо `Session`
@@ -247,7 +247,7 @@ with tf.Session() as sess:
 
 **map**
 
-```
+```python
 def read_image(sample):
     path = sample['path']
     bin = tf.read_file(path)
@@ -307,7 +307,7 @@ model.evaluate(val_generator)
 
 Нужно всего лишь заполнить словарь `tf.estimator.EstimatorSpec`
 
-```
+```python
 train_specs = dict(
     mode=mode,
     loss=loss,
@@ -315,7 +315,7 @@ train_specs = dict(
 )
 ```
 
-```
+```python
 eval_specs = dict(
     mode=mode,
     loss=loss,
