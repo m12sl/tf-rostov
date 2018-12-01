@@ -33,7 +33,7 @@ style: |
 
 ## Tensorflow и другие
 
-{:images}
+{:fullscrean}
 ![](pictures/logos.png)
 
 ## Tensorflow vs all
