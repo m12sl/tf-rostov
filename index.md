@@ -31,14 +31,16 @@ style: |
 
 </div>
 
-## Tensorflow
+## Tensorflow и другие
 
-Фреймворков довольно много, популярных сейчас 2.5-3: Pytorch, Tensorflow и Keras.
-Тут пано с иконками DL-фреймворков
+{:images}
+![](pictures/logos.png)
 
 ## Tensorflow vs all
+{:images}
+![](pictures/why-tf.png)
 
-Пано с иконками разных TF-проектов
+Хороший реп, хороший код, богатая инфраструктура.
 
 ## Вычислительные графы
 {:.section}
@@ -109,41 +111,63 @@ update_op = tf.assign(counter, incremented)
 ```
 
 
-## Типичные ошибки в Tensorflow
+## From Keras to Tensorflow
 {:.section}
 
-## Особенности Tensorflow
-### Keras to Tensorflow
+## From Keras
 
-Пример кода на Керасе
+```python
+model = Sequential()
+model.add(Dense(units=64, activation='relu', input_dim=100))
+model.add(Dense(units=10, activation='softmax'))
+model.compile(loss='categorical_crossentropy',
+              optimizer='sgd',
+              metrics=['accuracy'])
+model.fit(x_train, y_train, epochs=5, batch_size=32)
+loss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)
+```
 
-## Особенности Tensorflow
+
+
+## to Tensorflow
 ### Tensorflow model
 
-Код
+```python
+model = ...
+```
 
-## Особенности Tensorflow
+## to Tensorflow
 ### Tensorflow train_op
 
-Код
+```python
+train_op = ...
+```
 
-## Особенности Tensorflow
+## to Tensorflow
 ### Tensorflow train loop
 
-Код
+```python
+with tf.Session() as sess:
+    sess.run(init_op)
+    for x, y in X, Y:
+        sess.run(train_op, feed_dict={input_x: x, input_y: y})
+    val = []
+    for x, y in vX,  vY:
+        val.append(sess.run(metric, feed_dict={input_x: x, input_y: y}))
+```
 
-## Особенности Tensorflow
-### Tensorflow что пошло не так?
+## to Tensorflow
+### Подводные камни
 
-Картинки и отгадки.
+1.
+2.
+3.
 
 ## Dataset API
 {:.section}
 
 ## Dataset API
-### Dataset API
-
-Работа с данными
+### Работа с данными
 
 1. Список семплов (картинок, файлов, строчек, ....)
 2. Загрузка
@@ -154,7 +178,13 @@ update_op = tf.assign(counter, incremented)
 ## Dataset API
 ### Dataset API
 
-Here will be code.
+```python
+from_generator
+map()
+shuffle
+repeat
+batch
+```
 
 
 ## Estimator API
