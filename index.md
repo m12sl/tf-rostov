@@ -166,11 +166,9 @@ def very_model(x):
 
 
 ```python
-loss = tf.reduce_mean(
-        tf.nn.sparse_softmax_cross_entropy_with_logits(
-            labels=labels,
-            logits=logits,
-    ))
+loss = tf.nn.sparse_softmax_cross_entropy_with_logits(
+    labels=labels,
+    logits=logits)
 
 optimizer = tf.train.GradientDescentOptimizer(lr)
 train_op = optimizer.minimize(loss)
@@ -203,7 +201,7 @@ with tf.Session() as sess:
 ```python
 update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
     with tf.control_dependencies(update_ops):
-train_op = optimizer.minimize(loss)
+        train_op = optimizer.minimize(loss)
 ```
 
 ## to Tensorflow
