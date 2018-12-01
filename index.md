@@ -54,13 +54,13 @@ style: |
 ![](pictures/graph.png)
 {:.image-left}
 
-1. Собрать граф
+**Собрать граф**
 
-    ```python
-    x = tf.placeholder(tf.float32)
-    y = tf.placeholder(tf.float32)
-    z = (x * y) + (x + y)
-    ```
+```python
+x = tf.placeholder(tf.float32)
+y = tf.placeholder(tf.float32)
+z = (x * y) + (x + y)
+```
 
 ## Tensorflow -- это просто
 
@@ -68,22 +68,23 @@ style: |
 {:.image-left}
 
 
-1. Собрать граф
+Собрать граф
 
-    ```python
-    x = tf.placeholder(tf.float32)
-    y = tf.placeholder(tf.float32)
-    z = (x * y) + (x + y)
-    ```
+```python
+x = tf.placeholder(tf.float32)
+y = tf.placeholder(tf.float32)
+z = (x * y) + (x + y)
+```
 
 
-2. Использовать его
 
-    ```python
-    with tf.Session() as sess:
-        sess.run(z, feed_dict={x: 1, y: -2})
-        # -3
-    ```
+**Использовать его**
+
+```python
+with tf.Session() as sess:
+    sess.run(z, feed_dict={x: 1, y: -2})
+    # -3
+```
 
 ## Tensorflow -- это просто
 ### Чуть сложнее
