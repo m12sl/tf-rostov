@@ -90,7 +90,7 @@ with tf.Session() as sess:
 ### Чуть сложнее
 
 ![](pictures/counter-how.png)
-{:.image-left}
+{:.icon-left}
 
 Как сделать счетчик?
 
@@ -137,14 +137,44 @@ loss_and_metrics = model.evaluate(x_test, y_test, batch_size=128)
 ### Tensorflow model
 
 ```python
-model = ...
+def very_model(x):
+    # body:
+    x = layers.conv2d(x, 32, 3, 2)
+    ...
+    x = layers.conv2d(x, 2048, 1, 1)
+    gap = tf.reduce_mean(x, [1, 2])
+    # head:
+    return layers.fully_connected(gap, 1000, activation_fn=None) 
 ```
+
+## to Tensorflow
+### Tensorflow model (+bn + dropout)
+
+```python
+def very_model(x):
+    # body:
+    x = layers.conv2d(x, 32, 3, 2, normalizer_fn=layers.batch_norm)
+    ...
+    x = layers.conv2d(x, 2048, 1, 1, normalizer_fn=layers.batch_norm)
+    gap = tf.reduce_mean(x, [1, 2])
+    # head:
+    gap = tf.nn.dropout(gap, 0.5)
+    return layers.fully_connected(gap, 1000, activation_fn=None) 
+```
+
 
 ## to Tensorflow
 ### Tensorflow train_op
 
 ```python
-train_op = ...
+loss = tf.reduce_mean(
+        tf.nn.sparse_softmax_cross_entropy_with_logits(
+            labels=labels,
+            logits=logits,
+    ))
+
+optimizer = tf.train.GradientDescentOptimizer(lr)
+train_op = optimizer.minimize(loss)
 ```
 
 ## to Tensorflow
@@ -154,18 +184,35 @@ train_op = ...
 with tf.Session() as sess:
     sess.run(init_op)
     for x, y in X, Y:
-        sess.run(train_op, feed_dict={input_x: x, input_y: y})
+        x = preprocess(x)
+        sess.run(train_op, feed_dict={images: x, labels: y})
     val = []
     for x, y in vX,  vY:
-        val.append(sess.run(metric, feed_dict={input_x: x, input_y: y}))
+        x = preprocess(x)
+        metric = sess.run(metrics_op, feed_dict={images: x, labels: y})
 ```
 
 ## to Tensorflow
 ### Подводные камни
 
-1.
-2.
-3.
+1. Train loop
+2. Train op. 
+    
+    **Note: when training, the moving_mean and moving_variance need to be updated.**
+
+    ```python
+    update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
+        with tf.control_dependencies(update_ops):
+    train_op = optimizer.minimize(loss)
+    ```
+3. Model state
+
+## to Tensorflow
+### Хорошие практики
+
+0. Читать документацию и экспериментировать
+1. Использовать `tf.train.MonitoredTrainingSession` вместо `Session`
+2. Посмотреть реализацию `tf.contrib.layers.optimize_loss`
 
 ## Dataset API
 {:.section}
